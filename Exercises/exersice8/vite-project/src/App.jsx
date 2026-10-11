@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Countdown = () => {
   const [initialTime, setInitialTime] = useState(30);
@@ -6,19 +6,24 @@ const Countdown = () => {
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
-    let timerId;
-    if (isRunning && timeLeft > 0) {
-      timerId = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
-      }, 1000);
-    }
+    if (!isRunning || timeLeft === 0) return;
 
-    // Cleanup: clear interval
-    return () => clearInterval(timerId);
-  }, [isRunning, timeLeft]);[]
+    const timerId = setTimeout(() => {
+      if (timeLeft === 1) {
+        setTimeLeft(0);
+        setIsRunning(false);
+      } else {
+        setTimeLeft(timeLeft - 1);
+      }
+    }, 1000);
+    return () => clearTimeout(timerId);
+  }, [isRunning, timeLeft]);
 
   function handleInputChange(e) {
-    const value = parseInt(e.target.value, 10);
+    const value = Number(e.target.value);
+    if (!Number.isInteger(value) || value < 0) return;
+
+    setIsRunning(false);
     setInitialTime(value);
     setTimeLeft(value);
   }
@@ -44,6 +49,8 @@ const Countdown = () => {
       <label>Set Time (seconds): </label>
       <input
         type="number"
+        min="0"
+        step="1"
         value={initialTime}
         onChange={handleInputChange}
       />

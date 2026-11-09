@@ -25,4 +25,5 @@ function ContactItem({ contact, dispatch, setEditingContact }) {
   )
 }
 
+
 export default ContactItem

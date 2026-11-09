@@ -14,7 +14,7 @@ function ContactApp() {
 
   return (
     <main>
-      <h1>Contact Management App</h1>
+      <h1>Contact Management App</h1>    
       <ContactForm
         key={editingContact?.id ?? 'new'}
         dispatch={dispatch}

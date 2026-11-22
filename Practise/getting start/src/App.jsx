@@ -1,22 +1,15 @@
-import Layout  from './Layout'
 
+import useState from "react";
 
-function App (){
-return(
- <>
+function App() {
+  const [isvisible, setIsVisible] = useState(true);
+  return (
 
- <Layout />
-
-</>
-)
-
+    <div>
+      <button onClick={() => setIsVisible(!isvisible)}>
+        {isvisible ? 'Hide' : 'Show'} Message
+      </button>
+      {isvisible && <p>This is the message!</p>}
+    </div>
+  )
 }
-
-export default App;
-
-
-
-
-
-  
-

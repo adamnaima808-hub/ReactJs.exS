@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "*.jsx": "javascriptreact"
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.tabCompletion": "on"
+}
